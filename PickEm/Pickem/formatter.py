@@ -1,7 +1,11 @@
 import pandas as pd
+
+#Week number corresponding to which set of data you'd like to parse
+week_num = input('What week of the season are we in? (integer only)\n')
+
 #load the CSV file to inspect its structure
-csv_data = "C:/Users/hites/Documents/Personal/Python_Portfolio/PickEm/Files/Week4/PickemWeek4.csv"
-winning_teams = "C:/Users/hites/Documents/Personal/Python_Portfolio/PickEm/Files/Week4/winners.txt"
+csv_data = f'Files/Week{week_num}/PickemWeek{week_num}.csv'
+winning_teams = f'Files/Week{week_num}/winners.txt'
 
 pickem_data = pd.read_csv(csv_data)
 #Cleans up the names of the columns. removes whitespace
@@ -45,7 +49,7 @@ results=compare_winners(pickem_data, matchup_columns,teams)
 #will create a text file in the folder the script is run in.
 #Will go through each item in the comparison_results and print out both the name and score
 #the \n is to put them on different lines
-with open("results.txt","w") as file:
+with open(f"Results/Week{week_num}/results.txt","w") as file:
     for tuple in results:
         for j in tuple:
             file.write(str(j))
