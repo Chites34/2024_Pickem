@@ -1,3 +1,13 @@
+#Christopher Hites
+#Latest Revision: v1.3
+#Last update: 10/5/2024
+
+"""
+#Purpose: This script is used to parse through the Pickem data found in the Files directory,
+determine the correct number of picks, and then format the reults in the Restults directory.
+"""
+
+#Library
 import pandas as pd
 
 #Week number corresponding to which set of data you'd like to parse
@@ -55,6 +65,7 @@ def compare_winners(pickem_data, matchup_columns,teams):
 teams=get_winners(winning_teams)       
 #runs the main function to determine the participant's results
 results=compare_winners(pickem_data, matchup_columns,teams)
+
 
 #Will go through each item in the comparison_results and print out both the name and score
 #the \n is to put them on different lines
