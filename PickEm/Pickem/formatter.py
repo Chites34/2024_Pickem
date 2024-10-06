@@ -1,7 +1,17 @@
 import pandas as pd
 
 #Week number corresponding to which set of data you'd like to parse
-week_num = input('What week of the season are we in? (integer only)\n')
+def get_weeknum():
+    while True:
+        try:
+            weeknum = int(input('What week of the season are we in? (integer only)\n'))
+            return weeknum
+            break
+        except:
+            print("Incorrect Input, try again.")
+        
+#Receives user input
+week_num = get_weeknum()
 
 #load the CSV file to inspect its structure
 csv_data = f'Files/Week{week_num}/PickemWeek{week_num}.csv'
@@ -37,7 +47,7 @@ def compare_winners(pickem_data, matchup_columns,teams):
                 correct_picks +=1
         #append results to comparison_results as a tuple of (Discord name, Correct Picks)
         comparison_results.append((name, correct_picks))
-    comparison_results.sort(key=lambda x: x[1], reverse=True)
+    comparison_results.sort(key=lambda x: x[1], reverse=True) #sort results to have highest number of correct picks at top
     #return the results
     return comparison_results
 
@@ -46,7 +56,6 @@ teams=get_winners(winning_teams)
 #runs the main function to determine the participant's results
 results=compare_winners(pickem_data, matchup_columns,teams)
 
-#will create a text file in the folder the script is run in.
 #Will go through each item in the comparison_results and print out both the name and score
 #the \n is to put them on different lines
 with open(f"Results/Week{week_num}/results.txt","w") as file:
